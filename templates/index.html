@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon PPC Data Viewer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Amazon PPC Data Viewer</h1>
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            <div class="form-group">
+                <label for="file">Upload PPC Data File (Excel or CSV):</label>
+                <input type="file" name="file" accept=".xlsx, .xls, .csv" class="form-control-file" required>
+            </div>
+            <div class="form-group">
+                <label for="target_acos">Enter Target ACOS (%):</label>
+                <input type="number" name="target_acos" placeholder="Enter Target ACOS (%)" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload and Calculate</button>
+        </form>
+
+        <!-- Display errors if any -->
+        {% if error %}
+            <div class="alert alert-danger mt-4">{{ error }}</div>
+        {% endif %}
+
+        <!-- Display table if available -->
+        {% if table %}
+            <div class="mt-4">
+                <h3>Processed Data</h3>
+                {{ table | safe }}
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
